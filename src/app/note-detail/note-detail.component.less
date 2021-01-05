@@ -1,0 +1,54 @@
+@import '../../theme.less';
+
+h2, h3 {
+  color: #636363;
+  padding: 24px;
+  text-align: center;
+}
+
+.note-details {
+  margin: 0 auto;
+  width: 85%;
+}
+
+.body {
+  text-align: center;
+  line-height: 1.5;
+  font-size: 16px
+}
+
+.note-options {
+  width: 40%;
+  display: block;
+  margin: 24px auto;
+  text-align: center;
+
+  a {
+    padding: 16px;
+    font-size: 24px;
+    display: inline-block;
+    cursor: pointer;
+
+    i {
+      color: inherit;
+    }
+  }
+
+  .edit-button {
+    background: @blue1;
+    color: #fff;
+
+    &:hover {
+      background: @blue3;
+    }
+  }
+
+  .delete-button {
+    background: @red1;
+    color: #fff;
+
+    &:hover {
+      background: @red3;
+    }
+  }
+}

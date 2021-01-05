@@ -1,0 +1,86 @@
+@import '../../theme.less';
+
+h2 {
+  text-align: center;
+  color: #636363;
+  padding: 24px;
+}
+
+a {
+  cursor: pointer;
+}
+
+.note-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 16px;
+}
+
+.note {
+  border: 1px solid #e0e0e0;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 3fr 32px;
+}
+
+.note-controls {
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 32px;
+  text-align: center;
+
+  a {
+    font-size: 16px;
+    padding: 8px;
+    display: inline-block;
+
+    i {
+      color: #fff !important;
+    }
+  }
+}
+
+.view-button {
+  background: @pink2;
+
+  &:hover {
+    background: @pink3;
+  }
+}
+
+.edit-button {
+  background: @blue1;
+
+  &:hover {
+    background: @blue2;
+  }
+}
+
+.delete-button {
+  background: @red1;
+
+  &:hover {
+    background: @red2;
+  }
+}
+
+.note-add-content {
+  position: relative;
+  min-height: 84px;
+  height: 100%;
+
+  i {
+    color: @purple1;
+    font-size: 56px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+
+    &:hover {
+      color: @purple2;
+    }
+  }
+}

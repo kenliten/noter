@@ -1,6 +1,20 @@
-<div class="note" *ngFor="let note of notes">
-  <div class="note-content">
-    <h3 class="title">{{ note.title }}</h3>
-    <p class="body">{{ note.body }}</p>
+<h2>Your lists</h2>
+
+<div class="note-container">
+  <div class="note" *ngFor="let note of notes">
+    <app-note-card [note]="note"></app-note-card>
+    <div class="note-controls">
+      <a routerLink="/note/{{note.id}}" title="View note details" class="view-button"><i class="fas fa-eye"></i></a>
+      <a routerLink="/edit/{{note.id}}" title="Edit note" class="edit-button"><i class="fas fa-pen"></i></a>
+      <a (click)="deleteNote(note.id)" title="Delete note" class="delete-button"><i class="fas fa-trash"></i></a>
+    </div>
+  </div>
+
+  <div class="note">
+    <div class="note-add-content">
+      <a routerLink="/new">
+        <i class="fas fa-plus-circle" title="Add a new note"></i>
+      </a>
+    </div>
   </div>
 </div>

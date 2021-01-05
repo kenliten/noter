@@ -1,10 +1,10 @@
-<h2>Add a new note</h2>
+<h2>Edit note #{{note.id}}</h2>
 
 <form (submit)="saveNote()">
-  <label for="note-title">Title</label>
-  <input type="text" [(ngModel)]="title">
+  <label >Title</label>
+  <input type="text" [(ngModel)]="title" name="title">
   <label for="note-body">Body</label>
-  <textarea [(ngModel)]="body"></textarea>
+  <textarea [(ngModel)]="body" name="body"></textarea>
   <div>
     <button class="back-button" routerLink="/notes">Go Back</button>
     <button type="submit">Save</button>

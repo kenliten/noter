@@ -1,1 +1,4 @@
-<p>note-card works!</p>
+<div class="note-content">
+  <h4 class="title">{{ note.title }}</h4>
+  <p class="body">{{ note.body | sizeLimit:120 }}</p>
+</div>

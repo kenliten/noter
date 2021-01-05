@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NoteListComponent } from './note-list/note-list.component';
 import { NoteFormComponent } from './note-form/note-form.component';
-import { NoteComponent } from './note/note.component';
+import { NoteDetailComponent } from './note-detail/note-detail.component';
+import { NoteEditorComponent } from './note-editor/note-editor.component';
 
 const appRoutes: Routes = [
   {
@@ -21,7 +22,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'note/:noteId',
-    component: NoteComponent
+    component: NoteDetailComponent
+  },
+  {
+    path: 'edit/:noteId',
+    component: NoteEditorComponent
   }
 ];
 
