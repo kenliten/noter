@@ -27,8 +27,8 @@ export class NoteDetailComponent implements OnInit {
   }
 
   deleteNote(id): void {
-    this.notesService.deleteNote(this.note.id);
-    this.location.back();
+    this.notesService.deleteNote(this.note.id)
+      .subscribe(note => this.location.back());
   }
 
   ngOnInit(): void {

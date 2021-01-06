@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const notes = require('./notes');
 const PouchDB = require('pouchdb');
 
 const app = express();
@@ -15,7 +14,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 app.get('/api/v1/notes', (req, res) => {
-  console.log('Requested all notes');
   db.allDocs({include_docs: true})
     .then((notes) => {
       res.send(notes.rows.map(n => {
@@ -29,7 +27,6 @@ app.get('/api/v1/notes', (req, res) => {
 });
 
 app.get('/api/v1/notes/:noteId', (req, res) => {
-  console.log('Requested note with id ' + req.params['noteId']);
   db.allDocs({include_docs: true})
     .then((notes) => {
       let note = notes.rows.find(n => n.id == +req.params['noteId']);
@@ -42,7 +39,6 @@ app.get('/api/v1/notes/:noteId', (req, res) => {
 });
 
 app.post('/api/v1/notes/:title/:body', (req, res) => {
-  console.log('Requested a note creation');
   db.allDocs({include_docs: true}).then(notes => {
     return notes.rows.sort((a, b) => a.id - b.id);
   }).then(notes => {
@@ -58,7 +54,6 @@ app.post('/api/v1/notes/:title/:body', (req, res) => {
 });
 
 app.put('/api/v1/notes/:noteId/:title/:body', (req, res) => {
-  console.log('Requested update the note with id ' + req.params['noteId']);
   db.get(`${req.params['noteId']}`)
     .then(note => {
       note.title = req.params['title'];
@@ -72,7 +67,6 @@ app.put('/api/v1/notes/:noteId/:title/:body', (req, res) => {
 });
 
 app.delete('/api/v1/notes/:noteId', (req, res) => {
-  console.log('Requested delete the note with id ' + req.params['noteId']);
   db.get(`${req.params['noteId']}`)
     .then(note => db.remove(note))
     .then(note => res.send([note]));
@@ -81,3 +75,5 @@ app.delete('/api/v1/notes/:noteId', (req, res) => {
 app.listen(3000, ()=> {
   console.log("The API is ready and listening on port 3000");
 });
+
+module.exports = app;

@@ -23,8 +23,8 @@ export class NoteEditorComponent implements OnInit {
   }
 
   saveNote(): void {
-    this.notesService.updateNote(this.note.id, {title: this.title, body: this.body});
-    this.location.back();
+    this.notesService.updateNote(this.note.id, {title: this.title, body: this.body})
+      .subscribe(note => this.location.back());
   }
 
   ngOnInit(): void {

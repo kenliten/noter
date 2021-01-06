@@ -18,7 +18,8 @@ export class NoteListComponent implements OnInit {
   }
 
   deleteNote(id: number): void {
-    this.notesService.deleteNote(id);
+    this.notesService.deleteNote(id)
+      .subscribe(result => this.getNotes());
   }
 
   constructor( private notesService: NotesService ) {}

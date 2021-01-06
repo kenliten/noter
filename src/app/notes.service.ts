@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { NOTES } from './mock-notes';
 import { Note } from './note';
 
 @Injectable({
@@ -10,41 +10,27 @@ import { Note } from './note';
 })
 export class NotesService {
 
-  constructor() { }
+  private url: string = 'http://localhost:3000/api/v1/notes';
 
-  addNote(data: {title:string;body:string;}): Note {
-    let note: Note;
-    let lastNote: Note;
-    lastNote = NOTES[NOTES.length - 1];
-    note = {
-      id: lastNote.id + 1,
-      title: data.title,
-      body: data.body
-    }
-    NOTES.push(note);
-    return note;
+  constructor(private http: HttpClient) { }
+
+  addNote(data: {title:string; body:string;}): Observable<Note> {
+    return this.http.post<Note>(`${this.url}/${data.title}/${data.body}`, data);
   }
 
   getNotes(): Observable<Note[]> {
-    return of(NOTES);
+    return this.http.get<Note[]>(this.url);
   }
 
   getNote(id: number): Observable<Note> {
-    return of(NOTES.find(note => note.id === id));
+    return this.http.get<Note>(`${this.url}/${id}`);
   }
 
-  updateNote(id: number, data: {title: string; body: string;}): void {
-    let targetIndex = NOTES.indexOf(NOTES.find(note => note.id === id));
-    NOTES[targetIndex].title = data.title;
-    NOTES[targetIndex].body = data.body;
+  updateNote(id: number, data: {title: string; body: string;}): Observable<Note> {
+    return this.http.put<Note>(`${this.url}/${id}/${data.title}/${data.body}`, data);
   }
 
-  deleteNote(id: number): boolean {
-    if (NOTES.some(note => note.id === id)) {
-      NOTES.splice(NOTES.indexOf(NOTES.find(n => n.id === id)), 1);
-      return true;
-    } else {
-      return false;
-    }
+  deleteNote(id: number): Observable<object> {
+    return this.http.delete(`${this.url}/${id}`);
   }
 }

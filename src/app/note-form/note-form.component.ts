@@ -18,9 +18,9 @@ export class NoteFormComponent implements OnInit {
     ) { }
 
   saveNote(): void {
-    if (this.title && this.body) {
-      this.notesService.addNote({title: this.title, body: this.body});
-      this.location.back();
+    if (this.title !== "" && this.body !== "") {
+      this.notesService.addNote({title: this.title, body: this.body.split(" ").join("%20")})
+        .subscribe(note => this.location.back());
     } else {
       alert('You need to fill both fields');
     }

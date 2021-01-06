@@ -6,6 +6,7 @@
 </div>
 
 <div class="note-options">
+  <a class="back-button" routerLink="/notes" title="Go back">Go Back</a>
   <a class="edit-button" routerLink="/edit/{{note.id}}" title="Edit this note"><i class="fas fa-pen"></i></a>
   <a class="delete-button" (click)="deleteNote(note.id)" title="Delete this note"><i class="fas fa-trash"></i></a>
 </div>
